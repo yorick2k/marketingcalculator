@@ -1,0 +1,19 @@
+import streamlit as st
+
+st.title("Marketing Cost Calculator")
+
+st.header("Physical Retail")
+physical_budget = st.number_input("Budget (€):", min_value=0.0)
+physical_weeks = st.number_input("Duration (weeks):", min_value=1)
+physical_stores = st.number_input("Number of stores:", min_value=1)
+if st.button("Calculate Physical Cost"):
+    cost_per_week_per_store = physical_budget / (physical_weeks * physical_stores)
+    st.success(f"Cost per week per store: €{cost_per_week_per_store:.2f}")
+
+st.header("Online Retail")
+online_budget = st.number_input("Budget (€):", key="online_budget", min_value=0.0)
+online_weeks = st.number_input("Duration (weeks):", key="online_weeks", min_value=1)
+impressions = st.number_input("Impressions (in 1000s):", min_value=1)
+if st.button("Calculate Online Cost"):
+    cost_per_impression = online_budget / (online_weeks * (impressions * 1000))
+    st.success(f"Cost per impression: €{cost_per_impression:.4f}")
